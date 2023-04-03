@@ -11,21 +11,32 @@ namespace ContactRegister.Controllers
     [Route("[controller]")]
     public class ContatoController : Controller
     {
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [HttpGet("Update")]
         public IActionResult Update()
         {
             return View();
         }
 
+        [HttpGet("ConfirmDeletion")]
+        public IActionResult ConfirmDeletion()
+        {
+            return View();
+        }
+
+        [HttpGet("Delete")]
         public IActionResult Delete()
         {
             return View();
