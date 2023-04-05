@@ -8,6 +8,7 @@ namespace ContactRegister.Repositories
 {
     public interface IContactRepository
     {
+        List<ContactModel> FindAll();
         ContactModel ToAdd(ContactModel contact);
     }
 }
