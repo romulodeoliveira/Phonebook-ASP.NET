@@ -26,7 +26,10 @@ namespace ContactRegister.Controllers
         [HttpGet("Contact")]
         public IActionResult Index()
         {
-            return View();
+            // Crio uma variável contacts e atribuo a ela o método que criei no meu repositório
+            // Depois retorno a variável criada na minha view
+            List<ContactModel> contacts = _contactRepository.FindAll();
+            return View(contacts);
         }
 
         // Create
