@@ -20,6 +20,11 @@ namespace ContactRegister.Repositories
             _dataBaseContext = dataBaseContext;
         }
 
+        public List<ContactModel> FindAll()
+        {
+            return _dataBaseContext.Contacts.ToList();
+        }
+
         public ContactModel ToAdd(ContactModel contact)
         {
             // aqui gravo no banco de dados
