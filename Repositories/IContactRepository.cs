@@ -11,5 +11,6 @@ namespace ContactRegister.Repositories
         ContactModel ListById(Guid id);
         List<ContactModel> FindAll();
         ContactModel ToAdd(ContactModel contact);
+        ContactModel ToUpdate(ContactModel contact);
     }
 }
