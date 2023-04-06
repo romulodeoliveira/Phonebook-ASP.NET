@@ -50,9 +50,10 @@ namespace ContactRegister.Controllers
         // Update
 
         [HttpGet("Update")]
-        public IActionResult Update()
+        public IActionResult Update(Guid id)
         {
-            return View();
+            ContactModel contact = _contactRepository.ListById(id);
+            return View(contact);
         }
 
         // Delete
