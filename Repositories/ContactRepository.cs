@@ -20,6 +20,11 @@ namespace ContactRegister.Repositories
             _dataBaseContext = dataBaseContext;
         }
 
+        public ContactModel ListById(Guid id)
+        {
+            return _dataBaseContext.Contacts.FirstOrDefault(x => x.Id == id);
+        }
+
         public List<ContactModel> FindAll()
         {
             return _dataBaseContext.Contacts.ToList();
