@@ -11,6 +11,8 @@
 
 <form asp-controller="Contact" asp-action="Update" method="post">
 
+    <input type="hidden" asp-for="Id">
+
     <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
         <input type="text" asp-for="Name" class="form-control" id="name" placeholder="Nome">
