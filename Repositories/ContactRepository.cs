@@ -37,5 +37,21 @@ namespace ContactRegister.Repositories
             _dataBaseContext.SaveChanges();
             return contact;
         }
+
+        public ContactModel ToUpdate(ContactModel contact)
+        {
+            ContactModel contactDB = ListById(contact.Id);
+
+            if(contactDB == null) throw new System.Exception("Houve um erro na atualização do contato!");
+
+            contactDB.Name = contact.Name;
+            contactDB.Email = contact.Email;
+            contactDB.PhoneNumber = contact.PhoneNumber;
+
+            _dataBaseContext.Contacts.Update(contactDB);
+            _dataBaseContext.SaveChanges();
+
+            return contactDB;
+        }
     }
 }
