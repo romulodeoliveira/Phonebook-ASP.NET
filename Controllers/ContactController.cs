@@ -66,9 +66,10 @@ namespace ContactRegister.Controllers
         // Delete
 
         [HttpGet("ConfirmDeletion")]
-        public IActionResult ConfirmDeletion()
+        public IActionResult ConfirmDeletion(Guid id)
         {
-            return View();
+            ContactModel contact = _contactRepository.ListById(id);
+            return View(contact);
         }
 
         [HttpGet("Delete")]
