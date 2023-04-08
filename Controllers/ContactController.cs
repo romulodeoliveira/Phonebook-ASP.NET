@@ -73,9 +73,9 @@ namespace ContactRegister.Controllers
         }
 
         [HttpGet("Delete")]
-        public IActionResult Delete()
+        public IActionResult Delete(Guid id)
         {
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
