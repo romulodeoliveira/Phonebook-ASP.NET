@@ -10,4 +10,4 @@
 </div>
 
 <a asp-controller="Contact" asp-action="Index" class="btn btn-primary" role="button">Cancelar</a>
-<a asp-controller="Contact" asp-action="Delete" class="btn btn-danger" role="button">Confirmar</a>
+<a asp-controller="Contact" asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.Id" role="button">Confirmar</a>
