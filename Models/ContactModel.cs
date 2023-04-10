@@ -16,19 +16,22 @@ namespace ContactRegister.Models
             set;
         } = Guid.NewGuid();
 
-        public string Name
+        [Required(ErrorMessage = "Digite o nome!")]
+        public string? Name
         {
             get;
             set;
         }
 
-        public string Email
+        [Required(ErrorMessage = "Digite o e-mail!")]
+        public string? Email
         {
             get;
             set;
         }
 
-        public string PhoneNumber
+        [Required(ErrorMessage = "Digite o número de telefone!")]
+        public string? PhoneNumber
         {
             get;
             set;
