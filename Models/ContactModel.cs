@@ -24,6 +24,7 @@ namespace ContactRegister.Models
         }
 
         [Required(ErrorMessage = "Digite o e-mail!")]
+        [EmailAddress(ErrorMessage = "O e-mail informado é inválido!")]
         public string? Email
         {
             get;
@@ -31,6 +32,7 @@ namespace ContactRegister.Models
         }
 
         [Required(ErrorMessage = "Digite o número de telefone!")]
+        [Phone(ErrorMessage = "O número de telefone informado não é válido!")]
         public string? PhoneNumber
         {
             get;
