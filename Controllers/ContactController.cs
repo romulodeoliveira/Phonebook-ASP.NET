@@ -43,8 +43,13 @@ namespace ContactRegister.Controllers
         [HttpPost("Create")]
         public IActionResult Create(ContactModel contact)
         {
-            _contactRepository.ToAdd(contact);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contactRepository.ToAdd(contact);
+                return RedirectToAction("Index");
+            }
+
+            return View(contact);
         }
 
         // Update
