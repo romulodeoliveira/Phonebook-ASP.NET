@@ -64,8 +64,13 @@ namespace ContactRegister.Controllers
         [HttpPost("Update")]
         public IActionResult Update(ContactModel contact)
         {
-            _contactRepository.ToUpdate(contact);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contactRepository.ToUpdate(contact);
+                return RedirectToAction("Index");
+            }
+
+            return View(contact);
         }
 
         // Delete
