@@ -71,6 +71,10 @@ namespace ContactRegister.Controllers
             }
 
             return View(contact);
+
+            // caso queiramos especificar o nome do arquivo da view, podemos fazer da seguinte forma:
+            // return View("nome-da-view", nome-da-variavel-de-retorno)
+            // a variavel nesse caso seria contact.
         }
 
         // Delete
