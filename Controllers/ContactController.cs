@@ -75,6 +75,8 @@ namespace ContactRegister.Controllers
         [HttpPost("Update")]
         public IActionResult Update(ContactModel contact)
         {
+            // Tratamento de erro com ASP.NET:
+
             try
             {
                 if (ModelState.IsValid)
@@ -97,9 +99,6 @@ namespace ContactRegister.Controllers
             }
         }
 
-
-
-
         // Delete
 
         [HttpGet("ConfirmDeletion")]
@@ -112,8 +111,26 @@ namespace ContactRegister.Controllers
         [HttpGet("Delete")]
         public IActionResult Delete(Guid id)
         {
-            _contactRepository.ToDelete(id);
-            return RedirectToAction("Index");
+            try
+            {
+                bool deleted = _contactRepository.ToDelete(id);
+
+                if (deleted)
+                {
+                    TempData["successMessage"] = "Contato deletado com sucesso!";
+                }
+                else
+                {
+                    TempData["errorMessage"] = $"Ops... Não conseguimos atualizar seu contato!";
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["errorMessage"] = $"Ops... Não conseguimos atualizar seu contato. Tente novamente!\nDetalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
