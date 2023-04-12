@@ -11,15 +11,25 @@
 
     <br>
 
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        This is a success alert—check it out!
-    </div>
+    @* A estrutura a seguir serve para tratamento de erro nos templates html *@
 
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        This is a danger alert—check it out!
-    </div>
+    @if (TempData["successMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["successMessage"]
+        </div>
+    }
+
+    @if (TempData["errorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["errorMessage"]
+        </div>
+    }
+
+    <br>
 
     <h1 class="display-4">Listagem de Contatos</h1>
 
