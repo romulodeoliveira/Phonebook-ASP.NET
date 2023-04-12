@@ -29,7 +29,8 @@ namespace ContactRegister.Controllers
             // Crio uma variável contacts e atribuo a ela o método que criei no meu repositório
             // Depois retorno a variável criada na minha view
             List<ContactModel> contacts = _contactRepository.FindAll();
-            return View(contacts);
+            List<ContactModel> sortedContacts = contacts.OrderBy(c => c.Name).ToList();
+            return View(sortedContacts);
         }
 
         // Create
