@@ -43,13 +43,24 @@ namespace ContactRegister.Controllers
         [HttpPost("Create")]
         public IActionResult Create(ContactModel contact)
         {
-            if (ModelState.IsValid)
+            // Tratamento de erro com ASP.NET:
+
+            try
             {
-                _contactRepository.ToAdd(contact);
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.ToAdd(contact);
+                    TempData["successMessage"] = "Contato cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (System.Exception erro)
+            {
+                TempData["errorMessage"] = $"Ops... Não conseguimos cadastrar seu contato. Tente novamente!\nDetalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View(contact);
         }
 
         // Update
@@ -64,18 +75,30 @@ namespace ContactRegister.Controllers
         [HttpPost("Update")]
         public IActionResult Update(ContactModel contact)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contactRepository.ToUpdate(contact);
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.ToUpdate(contact);
+                    TempData["successMessage"] = "Contato atualizado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+
+                // caso queiramos especificar o nome do arquivo da view, podemos fazer da seguinte forma:
+                // return View("nome-da-view", nome-da-variavel-de-retorno)
+                // a variavel nesse caso seria contact.
+            }
+            catch (System.Exception erro)
+            {
+                TempData["errorMessage"] = $"Ops... Não conseguimos atualizar seu contato. Tente novamente!\nDetalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View(contact);
-
-            // caso queiramos especificar o nome do arquivo da view, podemos fazer da seguinte forma:
-            // return View("nome-da-view", nome-da-variavel-de-retorno)
-            // a variavel nesse caso seria contact.
         }
+
+
+
 
         // Delete
 
