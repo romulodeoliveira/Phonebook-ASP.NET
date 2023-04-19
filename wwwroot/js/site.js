@@ -7,6 +7,10 @@ $(document).ready(function () {
   $("#tablecontacts").DataTable();
 });
 
+$(document).ready(function () {
+  $("#tableusers").DataTable();
+});
+
 $(".close-alert").click(function () {
   $(".alert").hide("hide");
 });
