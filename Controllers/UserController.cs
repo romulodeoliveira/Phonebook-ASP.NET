@@ -5,16 +5,60 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ContactRegister.Repositories;
+using ContactRegister.Models;
 
 namespace Project01.Controllers
 {
     [Route("[controller]")]
     public class UserController : Controller
     {
+        private readonly IUserRepository _userRepository;
 
+        public UserController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        [HttpGet("Contact")]
         public IActionResult Index()
         {
+            // Crio uma variável contacts e atribuo a ela o método que criei no meu repositório
+            // Depois retorno a variável criada na minha view
+            List<UserModel> users = _userRepository.FindAll();
+            List<UserModel> sortedContacts = users.OrderBy(c => c.FirstName).ToList();
+            return View(sortedContacts);
+        }
+
+        // Create
+
+        [HttpGet("Create")]
+        public IActionResult Create()
+        {
             return View();
+        }
+
+        [HttpPost("Create")]
+        public IActionResult Create(UserModel user)
+        {
+            // Tratamento de erro com ASP.NET:
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _userRepository.ToAdd(user);
+                    TempData["successMessage"] = "Usuário cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(user);
+            }
+            catch (System.Exception erro)
+            {
+                TempData["errorMessage"] = $"Ops... Não conseguimos cadastrar seu usuário. Tente novamente!\nDetalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
     }
