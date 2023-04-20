@@ -8,9 +8,9 @@ namespace ContactRegister.Models
 {
     public class UserModel
     {
-        public ProfileEnum Profile { get; set; }
+        public ProfileEnum Profile { get; set; } = ProfileEnum.MEM;
 
-        public string Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public string FirstName { get; set; }
 
@@ -27,24 +27,5 @@ namespace ContactRegister.Models
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
-        public UserModel(ProfileEnum profile)
-        {
-            Profile = profile;
-
-            string typeUser = "";
-
-            if (Profile == ProfileEnum.ADM)
-            {
-                typeUser = "ADM";
-            }
-
-            else if (Profile == ProfileEnum.MEM)
-            {
-                typeUser = "MEM";
-            }
-
-            Id = $"USER-{Guid.NewGuid():N}-{typeUser}";
-        }
     }
 }
