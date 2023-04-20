@@ -8,10 +8,10 @@ namespace ContactRegister.Repositories
 {
     public interface IUserRepository
     {
-        UserModel ListById(string id);
+        UserModel ListById(Guid id);
         List<UserModel> FindAll();
         UserModel ToAdd(UserModel user);
         UserModel ToUpdate(UserModel user);
-        bool ToDelete(string id);
+        bool ToDelete(Guid id);
     }
 }
