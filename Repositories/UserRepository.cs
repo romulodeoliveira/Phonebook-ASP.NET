@@ -20,7 +20,7 @@ namespace ContactRegister.Repositories
             _dataBaseContext = dataBaseContext;
         }
 
-        public UserModel ListById(string id)
+        public UserModel ListById(Guid id)
         {
             return _dataBaseContext.Users.FirstOrDefault(x => x.Id == id);
         }
@@ -56,7 +56,7 @@ namespace ContactRegister.Repositories
             return userDB;
         }
 
-        public bool ToDelete(string id)
+        public bool ToDelete(Guid id)
         {
             UserModel userDB = ListById(id);
 
