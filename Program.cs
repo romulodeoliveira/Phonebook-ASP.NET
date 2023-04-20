@@ -9,13 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuração de acesso ao banco de dados
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContextPool<DataBaseContext>(options => 
-                options.UseMySql(mySqlConnection, 
+builder.Services.AddDbContextPool<DataBaseContext>(options =>
+                options.UseMySql(mySqlConnection,
                     ServerVersion.AutoDetect(mySqlConnection)));
 
 // Injeção de Dependencia
 // https://learn.microsoft.com/pt-br/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-6.0
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllersWithViews();
 
