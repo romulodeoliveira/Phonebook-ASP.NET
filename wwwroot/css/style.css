@@ -10,3 +10,8 @@
   width: 30px;
   height: 31px;
 }
+
+.DefaultProfilePicture {
+  max-width: 50px;
+  border-radius: 100%;
+}
