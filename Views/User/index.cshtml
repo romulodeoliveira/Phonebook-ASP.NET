@@ -36,6 +36,7 @@
     <table class="table" id="tableusers">
         <thead>
             <tr>
+                <th scope="col">Imagem</th>
                 <th scope="col">Nome</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Username</th>
@@ -49,6 +50,14 @@
                 foreach(UserModel user in Model)
                 {
                     <tr>
+                        @if (!string.IsNullOrEmpty(user.ProfilePicturePath))
+                        {
+                            <td><img src="@user.ProfilePicturePath" alt="Profile Picture"></td>
+                        }
+                        else
+                        {
+                            <td><img src="~/default-profile-picture.jpeg" alt="Default Profile Picture" class="DefaultProfilePicture"></td>
+                        }
                         <td>@user.FirstName</td>
                         <td>@user.Email</td>
                         <td>@user.UserName</td>
