@@ -20,7 +20,7 @@ namespace Project01.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet("Contact")]
+        [HttpGet("")]
         public IActionResult Index()
         {
             // Crio uma variável contacts e atribuo a ela o método que criei no meu repositório
@@ -41,8 +41,6 @@ namespace Project01.Controllers
         [HttpPost("Create")]
         public IActionResult Create(UserModel user)
         {
-            // Tratamento de erro com ASP.NET:
-
             try
             {
                 if (ModelState.IsValid)
@@ -61,5 +59,35 @@ namespace Project01.Controllers
             }
         }
 
+        // Update
+
+        [HttpGet("Update")]
+        public IActionResult Update(Guid id)
+        {
+            UserModel user = _userRepository.ListById(id);
+            return View(user);
+        }
+
+        [HttpPost("Update")]
+        public IActionResult Update(UserModel user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _userRepository.ToUpdate(user);
+                    TempData["successMessage"] = "Perfil atualizado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(user);
+
+            }
+            catch (System.Exception erro)
+            {
+                TempData["errorMessage"] = $"Ops... Não conseguimos atualizar seu perfil. Tente novamente!\nDetalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
