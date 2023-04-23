@@ -89,5 +89,39 @@ namespace Project01.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        // Delete
+
+        [HttpGet("ConfirmDeletion")]
+        public IActionResult ConfirmDeletion(Guid id)
+        {
+            UserModel user = _userRepository.ListById(id);
+            return View(user);
+        }
+
+        [HttpGet("Delete")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                bool deleted = _userRepository.ToDelete(id);
+
+                if (deleted)
+                {
+                    TempData["successMessage"] = "Usuário excluído com sucesso!";
+                }
+                else
+                {
+                    TempData["errorMessage"] = $"Ops... Não conseguimos excluir esse usuário!";
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["errorMessage"] = $"Ops... Não conseguimos excluir esse usuário. Tente novamente!\nDetalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
