@@ -10,38 +10,21 @@
 </div>
 
 <form asp-controller="User" asp-action="Create" method="post">
+    
     <div class="mb-3">
-        <label for="FirstName" class="form-label">Primeiro Nome:</label>
-        <input type="text" asp-for="FirstName" class="form-control" id="FirstName" placeholder="FirstName">
-        @Html.ValidationMessageFor(x => x.FirstName)
-    </div>
-
-    <div class="mb-3">
-        <label for="MiddleName" class="form-label">Nome do Meio:</label>
-        <input type="text" asp-for="MiddleName" class="form-control" id="MiddleName" placeholder="MiddleName">
-        @Html.ValidationMessageFor(x => x.MiddleName)
-    </div>
-
-    <div class="mb-3">
-        <label for="LastName" class="form-label">Último Nome:</label>
-        <input type="text" asp-for="LastName" class="form-control" id="LastName" placeholder="LastName">
-        @Html.ValidationMessageFor(x => x.LastName)
-    </div>
-
-    <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
+        <label for="email" class="form-label">E-mail:</label>
         <input type="email" asp-for="Email" class="form-control" id="email" placeholder="E-mail">
         @Html.ValidationMessageFor(x => x.Email)
     </div>
 
     <div class="mb-3">
-        <label for="UserName" class="form-label">UserName:</label>
+        <label for="UserName" class="form-label">Nome de usuário:</label>
         <input type="text" asp-for="UserName" class="form-control" id="UserName" placeholder="UserName">
         @Html.ValidationMessageFor(x => x.UserName)
     </div>
 
     <div class="mb-3">
-        <label for="Password" class="form-label">Password:</label>
+        <label for="Password" class="form-label">Senha:</label>
         <input type="password" asp-for="Password" class="form-control" id="Password" placeholder="Password">
         @Html.ValidationMessageFor(x => x.Password)
     </div>
