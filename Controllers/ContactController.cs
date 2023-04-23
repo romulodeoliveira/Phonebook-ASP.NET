@@ -118,18 +118,18 @@ namespace ContactRegister.Controllers
 
                 if (deleted)
                 {
-                    TempData["successMessage"] = "Contato deletado com sucesso!";
+                    TempData["successMessage"] = "Contato excluído com sucesso!";
                 }
                 else
                 {
-                    TempData["errorMessage"] = $"Ops... Não conseguimos atualizar seu contato!";
+                    TempData["errorMessage"] = $"Ops... Não conseguimos excluir seu contato!";
                 }
 
                 return RedirectToAction("Index");
             }
             catch (System.Exception erro)
             {
-                TempData["errorMessage"] = $"Ops... Não conseguimos atualizar seu contato. Tente novamente!\nDetalhe do erro: {erro.Message}";
+                TempData["errorMessage"] = $"Ops... Não conseguimos excluir seu contato. Tente novamente!\nDetalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
         }
