@@ -49,6 +49,7 @@ namespace ContactRegister.Repositories
             userDB.LastName = user.LastName;
             userDB.UserName = user.UserName;
             userDB.Email = user.Email;
+            userDB.UpdatedAt = DateTime.Now;
 
             _dataBaseContext.Users.Update(userDB);
             _dataBaseContext.SaveChanges();
