@@ -9,22 +9,27 @@
 
 </div>
 
-<form asp-controller="Contact" asp-action="Create" method="post">
+<form asp-controller="Contact" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Image" class="control-label">Image</label>
+        <input type="file" name="image" id="Image" class="form-control" asp-for="ImagePath">
+    </div>
+
     <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
-        <input type="text" asp-for="Name" class="form-control" id="name" placeholder="Nome">
+        <input type="text" asp-for="Name" name="name" class="form-control" id="name" placeholder="Nome">
         @Html.ValidationMessageFor(x => x.Name)
     </div>
 
     <div class="mb-3">
-        <label for="email" class="form-label">Nome:</label>
-        <input type="email" asp-for="Email" class="form-control" id="email" placeholder="E-mail">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" asp-for="Email" name="email" class="form-control" id="email" placeholder="E-mail">
         @Html.ValidationMessageFor(x => x.Email)
     </div>
     
     <div class="mb-3">
         <label for="phoneNumber" class="form-label">Telefone:</label>
-        <input type="text" asp-for="PhoneNumber" class="form-control" id="phoneNumber" placeholder="Número de Telefone">
+        <input type="text" asp-for="PhoneNumber" name="phonenumber" class="form-control" id="phoneNumber" placeholder="Número de Telefone">
         @Html.ValidationMessageFor(x => x.PhoneNumber)
     </div>
 
