@@ -2,10 +2,10 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
-using ContactRegister.Models;
-using ContactRegister.Repositories;
+using Phonebook.Models;
+using Phonebook.Repositories;
 
-namespace ContactRegister.Controllers
+namespace Phonebook.Controllers
 {
     [Route("[controller]")]
     public class ContactController : Controller

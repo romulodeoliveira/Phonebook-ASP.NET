@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ContactRegister.Models;
+using Phonebook.Models;
 
-namespace ContactRegister.Controllers;
+namespace Phonebook.Controllers;
 
 public class HomeController : Controller
 {
