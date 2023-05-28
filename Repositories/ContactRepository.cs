@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ContactRegister.Models;
-using ContactRegister.Data;
+using Phonebook.Models;
+using Phonebook.Data;
 
-namespace ContactRegister.Repositories
+namespace Phonebook.Repositories
 {
     public class ContactRepository : IContactRepository
     {
@@ -42,7 +38,7 @@ namespace ContactRegister.Repositories
         {
             ContactModel contactDB = ListById(contact.Id);
 
-            if(contactDB == null) throw new System.Exception("Houve um erro na atualização do contato!");
+            if (contactDB == null) throw new System.Exception("Houve um erro na atualização do contato!");
 
             contactDB.Name = contact.Name;
             contactDB.Email = contact.Email;
@@ -58,7 +54,7 @@ namespace ContactRegister.Repositories
         {
             ContactModel contactDB = ListById(id);
 
-            if(contactDB == null) throw new System.Exception("Houve um erro na exclusão do contato!");
+            if (contactDB == null) throw new System.Exception("Houve um erro na exclusão do contato!");
 
             _dataBaseContext.Contacts.Remove(contactDB);
             _dataBaseContext.SaveChanges();

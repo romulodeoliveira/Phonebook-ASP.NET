@@ -50,9 +50,9 @@
                 foreach(UserModel user in Model)
                 {
                     <tr>
-                        @if (!string.IsNullOrEmpty(user.ProfilePicturePath))
+                        @if (user.ProfilePicture != null)
                         {
-                            <td><img src="@user.ProfilePicturePath" alt="Profile Picture"></td>
+                            <td><img src="@user.ProfilePicture" alt="Profile Picture"></td>
                         }
                         else
                         {

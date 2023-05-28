@@ -1,4 +1,4 @@
-namespace ContactRegister.Models;
+namespace Phonebook.Models;
 
 public class ErrorViewModel
 {

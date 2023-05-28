@@ -13,39 +13,39 @@
 
     <input type="hidden" asp-for="Id">
 
-@*     <div class="mb-3">
+    <div class="mb-3">
         <label for="Photograph" class="form-label">Escolha sua imagem de perfil:</label>
-        <input asp-for="ProfilePicturePath" type="file" name="photograph" id="Photograph" class="form-control">
-        @Html.ValidationMessageFor(x => x.ProfilePicturePath)
-    </div> *@
+        <input asp-for="ProfilePicture" type="file" name="photograph" id="Photograph" class="form-control">
+        @Html.ValidationMessageFor(x => x.ProfilePicture)
+    </div>
 
     <div class="mb-3">
         <label for="FirstName" class="form-label">Primeiro Nome:</label>
-        <input type="text" asp-for="FirstName" class="form-control" id="FirstName" placeholder="FirstName">
+        <input type="text" asp-for="FirstName" name="firstName" class="form-control" id="FirstName" placeholder="FirstName">
         @Html.ValidationMessageFor(x => x.FirstName)
     </div>
 
     <div class="mb-3">
         <label for="MiddleName" class="form-label">Nome do Meio:</label>
-        <input type="text" asp-for="MiddleName" class="form-control" id="MiddleName" placeholder="MiddleName">
+        <input type="text" asp-for="MiddleName" name="middleName" class="form-control" id="MiddleName" placeholder="MiddleName">
         @Html.ValidationMessageFor(x => x.MiddleName)
     </div>
 
     <div class="mb-3">
         <label for="LastName" class="form-label">Último Nome:</label>
-        <input type="text" asp-for="LastName" class="form-control" id="LastName" placeholder="LastName">
+        <input type="text" asp-for="LastName" name="lastName" class="form-control" id="LastName" placeholder="LastName">
         @Html.ValidationMessageFor(x => x.LastName)
     </div>
 
     <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" asp-for="Email" class="form-control" id="email" placeholder="E-mail">
+        <input type="email" asp-for="Email" name="email" class="form-control" id="email" placeholder="E-mail">
         @Html.ValidationMessageFor(x => x.Email)
     </div>
 
     <div class="mb-3">
         <label for="UserName" class="form-label">UserName:</label>
-        <input type="text" asp-for="UserName" class="form-control" id="UserName" placeholder="UserName">
+        <input type="text" asp-for="UserName" name="userName" class="form-control" id="UserName" placeholder="UserName">
         @Html.ValidationMessageFor(x => x.UserName)
     </div>
 

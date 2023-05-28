@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using ContactRegister.Data;
-using ContactRegister.Repositories;
+
+using Phonebook.Data;
+using Phonebook.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

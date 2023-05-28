@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Project01.Enums;
 using System.ComponentModel.DataAnnotations;
-using Project01.Utils;
 
-namespace ContactRegister.Models
+using Phonebook.Utils;
+using Phonebook.Enums;
+
+namespace Phonebook.Models
 {
     public class UserModel
     {
@@ -20,7 +17,7 @@ namespace ContactRegister.Models
 
         public string? LastName { get; set; }
 
-        public string? ProfilePicturePath { get; set; }
+        public byte[]? ProfilePicture { get; set; }
 
         [Required(ErrorMessage = "Digite o seu nome de usuário!")]
         [Unique(ErrorMessage = "Este nome de usuário já está em uso.")]

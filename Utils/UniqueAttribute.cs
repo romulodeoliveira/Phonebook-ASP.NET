@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using ContactRegister.Data;
 
-namespace Project01.Utils
+using Phonebook.Data;
+
+namespace Phonebook.Utils
 {
     [AttributeUsage(AttributeTargets.Property, Inherited = false)]
     public sealed class UniqueAttribute : ValidationAttribute

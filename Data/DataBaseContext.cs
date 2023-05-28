@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ContactRegister.Models;
 
-namespace ContactRegister.Data
+using Phonebook.Models;
+
+namespace Phonebook.Data
 {
     public class DataBaseContext : DbContext
     {

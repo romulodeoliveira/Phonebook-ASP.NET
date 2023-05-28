@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ContactRegister.Models;
+using Phonebook.Models;
 
-namespace ContactRegister.Repositories
+namespace Phonebook.Repositories
 {
     public interface IContactRepository
     {

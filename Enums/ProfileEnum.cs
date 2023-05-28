@@ -1,4 +1,4 @@
-namespace Project01.Enums
+namespace Phonebook.Enums
 {
     public enum ProfileEnum
     {
