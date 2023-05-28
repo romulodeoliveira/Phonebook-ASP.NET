@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
 using ContactRegister.Models;
 using ContactRegister.Repositories;
 
@@ -13,12 +10,15 @@ namespace ContactRegister.Controllers
     [Route("[controller]")]
     public class ContactController : Controller
     {
+        private readonly IWebHostEnvironment _env;
 
+        // Injeção de Dependencia
         private readonly IContactRepository _contactRepository;
 
-        public ContactController(IContactRepository contactRepository)
+        public ContactController(IContactRepository contactRepository, IWebHostEnvironment env)
         {
             _contactRepository = contactRepository;
+            _env = env;
         }
 
         // Index
@@ -42,20 +42,39 @@ namespace ContactRegister.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(ContactModel contact)
+        public IActionResult Create(ContactModel contact, IFormFile image, string name, string email, string phonenumber)
         {
-            // Tratamento de erro com ASP.NET:
-
             try
             {
-                if (ModelState.IsValid)
-                {
-                    _contactRepository.ToAdd(contact);
-                    TempData["successMessage"] = "Contato cadastrado com sucesso!";
-                    return RedirectToAction("Index");
-                }
+                contact.Name = name;
+                contact.Email = email;
+                contact.PhoneNumber = phonenumber;
 
-                return View(contact);
+                if (image != null && image.Length > 0)
+                {
+                    string wwwrootPath = Path.Combine(_env.ContentRootPath, "wwwroot");
+                    string contactsImagePath = Path.Combine(wwwrootPath, "images/contacts");
+
+                    bool directoryExists = Directory.Exists(contactsImagePath);
+                    if (!directoryExists)
+                    {
+                        Directory.CreateDirectory(contactsImagePath);
+                    }
+
+                    string fileExtension = Path.GetExtension(image.FileName);
+                    string fileName = Guid.NewGuid().ToString() + fileExtension;
+                    string filePath = Path.Combine(contactsImagePath, fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        image.CopyTo(fileStream);
+                    }
+
+                    contact.ImagePath = filePath;
+                }
+                _contactRepository.ToAdd(contact);
+
+                TempData["successMessage"] = "Contato cadastrado com sucesso!";
+                return RedirectToAction("Index");
             }
             catch (System.Exception erro)
             {
