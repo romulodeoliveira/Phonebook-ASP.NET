@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/romulo/.programming/c#/projects/ContactRegister/ContactRegister.csproj": {}
+    "/home/romulo/.programming/c#/Projects/MVC/Project01/ContactRegister.csproj": {}
   },
   "projects": {
-    "/home/romulo/.programming/c#/projects/ContactRegister/ContactRegister.csproj": {
+    "/home/romulo/.programming/c#/Projects/MVC/Project01/ContactRegister.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/romulo/.programming/c#/projects/ContactRegister/ContactRegister.csproj",
+        "projectUniqueName": "/home/romulo/.programming/c#/Projects/MVC/Project01/ContactRegister.csproj",
         "projectName": "ContactRegister",
-        "projectPath": "/home/romulo/.programming/c#/projects/ContactRegister/ContactRegister.csproj",
+        "projectPath": "/home/romulo/.programming/c#/Projects/MVC/Project01/ContactRegister.csproj",
         "packagesPath": "/home/romulo/.nuget/packages/",
-        "outputPath": "/home/romulo/.programming/c#/projects/ContactRegister/obj/",
+        "outputPath": "/home/romulo/.programming/c#/Projects/MVC/Project01/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/romulo/.nuget/NuGet/NuGet.Config"
@@ -37,6 +37,28 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0-preview.2.23128.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0-preview.2.23128.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0-preview.2.23128.3, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
         }
       }
     }
