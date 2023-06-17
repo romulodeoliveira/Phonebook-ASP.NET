@@ -80,3 +80,6 @@ _[Ss]cripts
 
 wwwroot/images/
 Migrations/
+.idea/
+.vscode/
+Phonebook.sln
