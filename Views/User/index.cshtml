@@ -52,7 +52,7 @@
                     <tr>
                         @if (user.ProfilePicture != null)
                         {
-                            <td><img src="@user.ProfilePicture" alt="Profile Picture"></td>
+                            <td><img src="data:image;base64,@(user.ProfilePicture != null ? Convert.ToBase64String(user.ProfilePicture) : string.Empty)" alt="Profile Picture" class="DefaultProfilePicture"></td>
                         }
                         else
                         {
