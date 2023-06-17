@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ContactRegister.Repositories;
-using ContactRegister.Models;
+using System;
+using System.IO;
 
-namespace Project01.Controllers
+using Phonebook.Repositories;
+using Phonebook.Models;
+
+namespace Phonebook.Controllers
 {
     [Route("[controller]")]
     public class UserController : Controller
@@ -20,7 +18,7 @@ namespace Project01.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet("")]
+        [HttpGet("user/")]
         public IActionResult Index()
         {
             // Crio uma variável contacts e atribuo a ela o método que criei no meu repositório
@@ -32,13 +30,13 @@ namespace Project01.Controllers
 
         // Create
 
-        [HttpGet("Create")]
+        [HttpGet("user/create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost("Create")]
+        [HttpPost("user/create")]
         public IActionResult Create(UserModel user)
         {
             try
@@ -61,27 +59,102 @@ namespace Project01.Controllers
 
         // Update
 
-        [HttpGet("Update")]
+        [HttpGet("user/update/{id}")]
         public IActionResult Update(Guid id)
         {
             UserModel user = _userRepository.ListById(id);
             return View(user);
         }
 
-        [HttpPost("Update")]
-        public IActionResult Update(UserModel user)
+        [HttpPost("user/update/{id}")]
+        public IActionResult Update(UserModel user, IFormFile photograph, string firstName, string middleName, string lastName, string email, string userName, string password)
         {
             try
             {
-                if (ModelState.IsValid)
+                var user1 = _userRepository.ListById(user.Id);
+                
+                if (userName == null)
                 {
-                    _userRepository.ToUpdate(user);
-                    TempData["successMessage"] = "Perfil atualizado com sucesso!";
-                    return RedirectToAction("Index");
+                    user.UserName = user1.UserName;
                 }
 
-                return View(user);
+                if (email == null)
+                {
+                    user.Email = user1.Email;
+                }
+                                
+                if (password == null)
+                {
+                    user.Password = user1.Password;
+                }
 
+                user1.UserName = user.UserName;
+                user1.Email = user.Email;
+                user1.Password = user.Password;
+                
+                if (userName != null)
+                {
+                    user1.UserName = userName;
+                }
+
+                if (email != null)
+                {
+                    user1.Email = email;
+                }
+                                
+                if (password != null)
+                {
+                    user1.Password = password;
+                }
+                
+                if (photograph != null)
+                {
+                    if (Path.GetExtension(photograph.FileName) == ".jpg" || Path.GetExtension(photograph.FileName) == ".jpeg" || Path.GetExtension(photograph.FileName) == ".png")
+                    {
+                        if (photograph.Length > 0 && photograph.Length < (1 * 1024 * 1024))
+                        {
+                            using (var memoryStream = new MemoryStream())
+                            {
+                                photograph.CopyTo(memoryStream);
+                                user1.ProfilePicture = memoryStream.ToArray();
+                            }
+                        }
+                        else
+                        {
+                            // Retorna uma mensagem de erro
+                            TempData["errorMessage"] = "O tamanho máximo da imagem permitido é de 1MB.";
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    else
+                    {
+                        // Retorna uma mensagem de erro
+                        TempData["errorMessage"] = $"A extensão '{Path.GetExtension(photograph.FileName)}' não é permitida. Utilize apenas '.png', '.jpg' ou '.jpeg'.";
+                        return RedirectToAction("Index");
+                    }
+                }
+
+                if (firstName != null)
+                {
+                    user1.FirstName = firstName;
+                }
+                
+                if (middleName != null)
+                {
+                    user1.MiddleName = middleName;
+                }
+                
+                if (lastName != null)
+                {
+                    user1.LastName = lastName;
+                }
+                
+                // Utiliza o repository para salvar o model no banco
+                _userRepository.ToUpdate(user1);
+                
+                // Retorna uma mensagem de sucesso
+                TempData["successMessage"] = "Usuário cadastrado com sucesso!";
+                return RedirectToAction("Index");
             }
             catch (System.Exception erro)
             {
