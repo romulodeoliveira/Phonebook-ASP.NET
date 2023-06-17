@@ -38,13 +38,18 @@ namespace Phonebook.Repositories
         {
             UserModel userDB = ListById(user.Id);
 
-            if (userDB == null) throw new System.Exception("Houve um erro na atualização do usuário!");
+            if (userDB == null)
+            {
+                throw new System.Exception("Houve um erro na atualização do usuário!");
+            }
 
             userDB.FirstName = user.FirstName;
             userDB.MiddleName = user.MiddleName;
             userDB.LastName = user.LastName;
             userDB.UserName = user.UserName;
             userDB.Email = user.Email;
+            userDB.Password = user.Password;
+            userDB.ProfilePicture = user.ProfilePicture;
             userDB.UpdatedAt = DateTime.Now;
 
             _dataBaseContext.Users.Update(userDB);
