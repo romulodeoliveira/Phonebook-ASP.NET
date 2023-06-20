@@ -72,6 +72,26 @@ namespace Phonebook.Controllers
             try
             {
                 var user1 = _userRepository.ListById(user.Id);
+
+                if (firstName == null)
+                {
+                    user.FirstName = user1.FirstName;
+                }
+
+                if (middleName == null)
+                {
+                    user.MiddleName = user1.MiddleName;
+                }
+
+                if (lastName == null)
+                {
+                    user.LastName = user1.LastName;
+                }
+
+                if (photograph == null)
+                {
+                    user.ProfilePicture = user1.ProfilePicture;
+                }
                 
                 if (userName == null)
                 {
@@ -88,23 +108,27 @@ namespace Phonebook.Controllers
                     user.Password = user1.Password;
                 }
 
+                user1.FirstName = user.FirstName;
+                user1.MiddleName = user.MiddleName;
+                user1.LastName = user.LastName;
+                user1.ProfilePicture = user.ProfilePicture;
                 user1.UserName = user.UserName;
                 user1.Email = user.Email;
                 user1.Password = user.Password;
                 
-                if (userName != null)
+                if (firstName != null)
                 {
-                    user1.UserName = userName;
+                    user1.FirstName = firstName;
                 }
-
-                if (email != null)
+                
+                if (middleName != null)
                 {
-                    user1.Email = email;
+                    user1.MiddleName = middleName;
                 }
-                                
-                if (password != null)
+                
+                if (lastName != null)
                 {
-                    user1.Password = password;
+                    user1.LastName = lastName;
                 }
                 
                 if (photograph != null)
@@ -133,22 +157,22 @@ namespace Phonebook.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                
+                if (userName != null)
+                {
+                    user1.UserName = userName;
+                }
 
-                if (firstName != null)
+                if (email != null)
                 {
-                    user1.FirstName = firstName;
+                    user1.Email = email;
                 }
-                
-                if (middleName != null)
+                                
+                if (password != null)
                 {
-                    user1.MiddleName = middleName;
+                    user1.Password = password;
                 }
-                
-                if (lastName != null)
-                {
-                    user1.LastName = lastName;
-                }
-                
+
                 // Utiliza o repository para salvar o model no banco
                 _userRepository.ToUpdate(user1);
                 
