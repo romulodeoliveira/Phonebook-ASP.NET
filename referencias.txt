@@ -1,0 +1,6 @@
+https://marcoswoc.net/autenticacao-e-autorizacao-jwt-em-uma-api-net-6-0/
+https://www.youtube.com/watch?v=vAUXU0YIWlU
+https://balta.io/artigos/aspnet-5-autenticacao-autorizacao-bearer-jwt
+
+# PESQUISAR:
+refresh token
